@@ -34,6 +34,15 @@ credentials:
       logged_in: false
       name: Gurnoor
       password: $2b$12$W1dwiWz2Ad9c67sB6erq2uU2LuTgnz.vgXUn0H/S3ssRqzG0i5dhK
+    pg:
+      email: mehrchandcse544@gmail.com
+      failed_login_attempts: 0
+      first_name: Priyanshu
+      last_name: Gupta
+      logged_in: true
+      password: $2b$12$fOtwWeQCbqGzYdpSiHWOVOJjp1Eu5ThmYHGgh0IMGiFlAfQCRBPTq
+      password_hint: Teranaam
+      roles: null
     priyanshu:
       email: 2020appscicomp544@gmail.com
       failed_login_attempts: 0

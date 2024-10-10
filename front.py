@@ -10,18 +10,18 @@ st.set_page_config(page_title='Pandemic Insights', page_icon='🦠',layout="wide
 #THE PAGE 1 CONTENT IS HERE:-
 def page1():
     with open('config.yaml') as file:
-            config =  yaml.load(file, Loader=SafeLoader)
+        config = yaml.load(file, Loader=SafeLoader)
 
     # Creating the authenticator object
     authenticator = stauth.Authenticate(
         config['credentials'],
         config['cookie']['name'],
         config['cookie']['key'],
-        config['cookie']['expiry_days'],
-        config['pre-authorized']
+        config['cookie']['expiry_days']
+        # Remove 'pre-authorized' parameter
     )
 
-        # Function to display a video background
+    # Function to display a video background
     def display_video_background(video_url):
         video_html = f"""
         <video autoplay muted loop playsinline width="100%">
@@ -41,8 +41,8 @@ def page1():
         }
         </style>
         """
-        # Display the video background and the Streamlit app content
         st.markdown(video_html + css_code, unsafe_allow_html=True)
+
     # Function to display animated text
     def display_animated_text(*texts):
         css = """
@@ -172,12 +172,13 @@ def page1():
                 try:
                     (email_of_registered_user,
                     username_of_registered_user,
-                    name_of_registered_user) = authenticator.register_user(pre_authorization=False)
+                    name_of_registered_user) = authenticator.register_user()  # Removed pre_authorization
                     if email_of_registered_user:
                         st.success('User registered successfully!!')
                         st.markdown('<h6 style="color:White; font-size: 16px"> **you can go to the login page and enter the site</h6>', unsafe_allow_html=True)
                 except RegisterError as e:
                     st.error(e)
+
         if selected == "Login":
             with st.sidebar:
                 try:
@@ -223,6 +224,8 @@ def page2():
     #     pass
     #     #if st.button("Double click to go back to front page"):
     #     #    st.session_state.current_function="page1"
+
+    
 def main():
     if "current_function" not in st.session_state:
         st.session_state.current_function = "page1"
